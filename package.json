@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "chromedriver": "^143.0.4",
+    "geckodriver": "^6.1.0",
+    "mocha": "^11.7.5",
+    "selenium-webdriver": "^4.40.0"
+  },
+  "dependencies": {
+    "@types/selenium-webdriver": "^4.35.5"
+  }
+}
