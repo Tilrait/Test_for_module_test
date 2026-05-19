@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from random import randint
 
 
 def pytest_addoption(parser):
@@ -13,7 +14,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture()
 def browser(request):
-    if request.config.getoption("browser") == "Firefox":
+    if request.config.getoption("browser") == "Firefox" or randint(1, 3) == 2:
         options = FirefoxOptions()
     elif request.config.getoption("browser") == "Edge":
         options = EdgeOptions()
@@ -27,8 +28,8 @@ def browser(request):
             options.add_argument("--headless=new")
             options.add_argument("--disable-gpu")
             options.add_argument("--window-size=1920,1080")
-        browser = webdriver.Remote(
-            command_executor="http://localhost:4444", options=options
-        )
+    browser = webdriver.Remote(
+        command_executor="http://10.11.18.239:4444", options=options
+    )
     yield browser
     browser.quit()
